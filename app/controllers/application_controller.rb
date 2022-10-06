@@ -35,6 +35,11 @@ class ApplicationController < Sinatra::Base
     decisions.to_json
   end
 
+  get "decision/1" do
+    decision = Decision.find(params[:id])
+    decision.to_json
+  end
+
   get "/options" do
     options = Option.all
     options.to_json
@@ -59,8 +64,8 @@ class ApplicationController < Sinatra::Base
   end
 
   # update
-  patch '/decision/:id' do
-    decision = Decision.find(params[:id])
+  patch '/decisions/:id' do
+    decisions = Decision.find(params[:id])
     decision.update(decision_params)
   end
 
